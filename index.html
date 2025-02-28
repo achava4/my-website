@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Slideshow</title>
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #ffffff, #fceef3);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .slideshow-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 20px;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            font-weight: bold;
+            color: rgb(12, 1, 1);
+            background: #f4f1f2;
+            padding: 12px 16px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .heart {
+            position: fixed;
+            top: -5vh;
+            font-size: 20px;
+            color: #ff1e56;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(110vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        p {
+            font-family: 'Sacramento', cursive;
+            font-size: 26px;
+            /* font-weight: bold; */
+            color: #060606;
+            /* Soft romantic pink */
+            text-align: center;
+            /* text-shadow: 2px 2px 6px rgba(255, 105, 180, 0.5); */
+            /* background: linear-gradient(135deg, #ffffff, #ffe6eb); */
+            padding: 0px 0px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <div class="slideshow-container">
+        <div class="slide active">
+            <img src="DSC05188.jpg" alt="Slide 1">
+            <div class="caption">"Every day with you is a gift." 🎁💞</div>
+        </div>
+        <div class="slide">
+            <img src="DSC05462.jpg" alt="Slide 2">
+            <div class="caption">"Your love is my happiest melody." 🎶💕</div>
+        </div>
+        <div class="slide">
+            <img src="DSC05221.jpg" alt="Slide 3">
+            <div class="caption">"Forever isn't long enough with you."⏳❤️</div>
+        </div>
+        <div class="slide">
+            <img src="DSC05380.jpg" alt="Slide 4">
+            <div class="caption">💖💖💖💖💖</div>
+        </div>
+        <div class="slide active">
+            <img src="DSC05458.jpg" alt="Slide 5">
+            <div class="caption">"Holding you feels like home." 🏡💖 </div>
+        </div>
+        <div class="slide">
+            <img src="DSC05448.jpg" alt="Slide 6">
+            <div class="caption">"You're my sweetest dream come true." 🌙💕</div>
+        </div>
+        <div class="slide">
+            <img src="DSC05238.jpg" alt="Slide 7">
+            <div class="caption">"You make my heart dance." 💃💖</div>
+        </div>
+        <div class="slide">
+            <img src="DSC05288.jpg" alt="Slide 8">
+            <div class="caption">"With you, every moment is magical." ✨❤️</div>
+        </div>
+        <div class="slide active">
+            <img src="DSC05392.jpg" alt="Slide 9">
+            <div class="caption">"You're my heart's favorite song." 🎵❤️</div>
+        </div>
+        <div class="slide">
+            <img src="DSC05262.jpg" alt="Slide 10">
+            <div class="caption">"You light up my world." 💡💕</div>
+        </div>
+        <div class="slide">
+            <img src="DSC05270.jpg" alt="Slide 11">
+            <div class="caption">"Love shines brightest with you." ✨💖</div>
+        </div>
+        <div class="slide">
+            <img src="DSC05303.jpg" alt="Slide 12">
+            <div class="caption">"You are my favorite place to be." 🏠💞</div>
+        </div>
+        <div class="slide">
+            <img src="DSC05358.jpg" alt="Slide 12">
+            <div class="caption">"Your smile is my sunshine." ☀️💞</div>
+        </div>
+    </div>
+    <audio id="background-music" loop autoplay muted>
+        <source src="background-music.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        let index = 0;
+        function showSlides() {
+            let slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+            index = (index + 1) % slides.length;
+            slides[index].classList.add('active');
+            setTimeout(showSlides, 5000);
+        }
+        showSlides();
+
+        function createHeart() {
+            let heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '-5vh';
+            heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+            heart.style.fontSize = Math.random() * 15 + 10 + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 500);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let audio = document.getElementById('background-music');
+            let playPromise = audio.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    audio.muted = false; // Unmute if autoplay works
+                }).catch(error => {
+                    console.log("Autoplay blocked. Waiting for user interaction.");
+                });
+            }
+        });
+        // Unmute and play on first interaction
+        function enableAudio() {
+            let audio = document.getElementById('background-music');
+            audio.muted = false;
+            audio.play();
+            document.removeEventListener('click', enableAudio);
+            document.removeEventListener('touchstart', enableAudio);
+        }
+        document.addEventListener('click', enableAudio, { once: true });
+        document.addEventListener('touchstart', enableAudio, { once: true });
+        document.getElementById("unmute-btn").addEventListener("click", function () {
+            let audio = document.getElementById("background-music");
+            audio.muted = false;
+            audio.play();
+        });
+
+    </script>
+    <p>Ankit    💞    Prerana</p>
+</body>
+
+</html>
